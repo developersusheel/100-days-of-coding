@@ -1,7 +1,9 @@
 const redux = require('redux'); 
 const createStore = redux.createStore
+const bindActionCreators = redux.bindActionCreators
 
 const CAKE_ORDERED = 'CAKE_ORDERED';
+const CAKE_RESTOCKED = 'CAKE_RESTOCKED';
 
 // Action Creator
 function orderedCake(){
@@ -9,6 +11,15 @@ function orderedCake(){
   return {
     type: CAKE_ORDERED,
     quantity: 1,
+  }
+}
+
+// Action Creator
+function restockedCake(qty = 1){
+  // Action
+  return {
+    type: CAKE_RESTOCKED,
+    payload: qty,
   }
 }
 
@@ -24,6 +35,11 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         numOfCakes: state.numOfCakes - 1
+      }
+    case CAKE_RESTOCKED:
+      return {
+        ...state,
+        numOfCakes: state.numOfCakes + action.payload 
       }
     default:
       return state
@@ -41,6 +57,7 @@ const unsubscribe = store.subscribe(()=> console.log('Updated State:', store.get
 store.dispatch(orderedCake())
 store.dispatch(orderedCake())
 store.dispatch(orderedCake())
+store.dispatch(restockedCake(3))
 
 // Unsubscribe from store
 unsubscribe();
