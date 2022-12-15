@@ -73,7 +73,6 @@ const cakeReducer = (state = initialCakeState, action) => {
       }
     default:
       return state
-  }
 }
 
 // Reducer: (prevState, action) => newState
