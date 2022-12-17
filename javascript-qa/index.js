@@ -30,5 +30,14 @@
 // }else{
 //   console.log(typeof arrayList);
 // }
+// console.log(Array.isArray(arrayList));
+
+
+// Empty an array
+// Method 1
+var arrayList =  ['a', 'b', 'c', 'd', 'e', 'f'];
+arrayList = [];
+
+
 
 
